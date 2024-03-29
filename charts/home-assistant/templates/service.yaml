@@ -15,5 +15,13 @@ spec:
       targetPort: http
       protocol: TCP
       name: http
+{{- if .Values.service.additional_ports }}
+{{ range .Values.service.additional_ports }}
+    - port: {{ .port }}
+      targetPort: {{ .targetPort }}
+      protocol: {{ .protocol }}
+      name: {{ .name }}
+{{- end }}
+{{- end }}
   selector:
     {{- include "home-assistant.selectorLabels" . | nindent 4 }}

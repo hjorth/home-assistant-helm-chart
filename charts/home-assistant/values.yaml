@@ -105,6 +105,7 @@ service:
   port: 8080
   # Annotations to add to the service
   annotations: {}
+  additional_ports: []
 
 # Ingress settings
 ingress:

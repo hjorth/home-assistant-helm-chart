@@ -53,6 +53,14 @@ spec:
               {{- if .Values.hostPort.enabled }}
               hostPort: {{ .Values.hostPort.port }}
               {{- end }}
+    {{- if .Values.service.additional_ports }}
+    {{ range .Values.service.additional_ports }}
+            - name: {{ .name }}
+              containerPort: {{ .targetPort }}
+              protocol: {{ .protocol }}
+    {{- end }}
+    {{- end }}
+
           livenessProbe:
             httpGet:
               path: /
