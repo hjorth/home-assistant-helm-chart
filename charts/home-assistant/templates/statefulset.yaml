@@ -103,6 +103,9 @@ spec:
             {{- toYaml . | nindent 12 }}
           {{- end }}
           volumeMounts:
+          - name: docker-env-empty
+            mountPath: /.dockerenv
+            subPath: .dockerenv
           - mountPath: /config
             name: {{ include "home-assistant.fullname" . }}
         {{- end }}
@@ -120,6 +123,8 @@ spec:
     {{- end }}
     {{- if or (not .Values.persistence.enabled) .Values.additionalVolumes }}
       volumes:
+      - name: docker-env-empty
+        emptyDir: {}
       {{- if not .Values.persistence.enabled }}
       - name: {{ include "home-assistant.fullname" . }}
         emptyDir: {}
