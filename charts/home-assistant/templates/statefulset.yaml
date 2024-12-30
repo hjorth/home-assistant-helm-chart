@@ -105,7 +105,6 @@ spec:
           - name: docker-env-empty
             mountPath: /.dockerenv
             subPath: .dockerenv
-sadgasgdafgdsfgdsgdsf
           - mountPath: /config
             name: {{ include "home-assistant.fullname" . }}
         {{- end }}
